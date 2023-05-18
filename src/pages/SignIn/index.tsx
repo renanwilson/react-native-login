@@ -8,10 +8,14 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { SignInStyles } from "./styles";
+import { StackTypes } from "../../routes";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = SignInStyles;
 
 export function SignIn() {
+  const navigation = useNavigation<StackTypes>();
+
   return (
     <View style={styles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.header}>
@@ -26,7 +30,10 @@ export function SignIn() {
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonRegister}>
-          <Text style={styles.registerButtonText}>
+          <Text
+            style={styles.registerButtonText}
+            onPress={() => navigation.navigate("Login")}
+          >
             Não possui uma conta? Cadastre-se
           </Text>
         </TouchableOpacity>
